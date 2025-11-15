@@ -1,0 +1,23 @@
+def input_sequence():
+    sequence = []
+    while True:
+        number = int(input("Введіть число: "))
+        sequence.append(number)
+        if number % 10 == 0:
+            break
+    return sequence
+
+def print_reverse(sequence):
+    if not sequence:
+        return
+    else:
+        print(sequence[-1], end=" ")
+        print_reverse(sequence[:-1])
+
+# Зчитуємо послідовність
+sequence = input_sequence()
+
+# Виводимо у зворотньому порядку
+print("Числа у зворотньому порядку:")
+print_reverse(sequence)
+print()54
