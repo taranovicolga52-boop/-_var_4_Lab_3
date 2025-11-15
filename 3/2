@@ -1,0 +1,30 @@
+def input_tuples():
+    print("Введіть кількість кортежів:")
+    count = int(input())
+    result = []
+    for i in range(count):
+        print(f"Введіть кортеж {i + 1} у форматі через пробіл (наприклад: 1 3):")
+        parts = input().split()
+        # Перетворюємо кожен елемент у число
+        tuple_elements = []
+        for part in parts:
+            tuple_elements.append(int(part))
+        result.append(tuple(tuple_elements))
+    return result
+
+def sort_tuples_by_second_element(tuples_list):
+    n = len(tuples_list)
+    for i in range(n):
+        for j in range(0, n - i - 1):
+            if tuples_list[j][1] > tuples_list[j + 1][1]:
+                temp = tuples_list[j]
+                tuples_list[j] = tuples_list[j + 1]
+                tuples_list[j + 1] = temp
+    return tuples_list
+
+# Головна програма
+tuples_list = input_tuples()
+print("Відсортований список:")
+sorted_list = sort_tuples_by_second_element(tuples_list)
+print(sorted_list)
+5
