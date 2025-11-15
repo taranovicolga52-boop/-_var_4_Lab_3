@@ -1,0 +1,32 @@
+def is_prime(n):
+    if n < 2:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+def split_into_primes(n, start=2):
+    if n == 0:
+        # Знайшли один із способів розбиття
+        return [[]]
+    if n < 0:
+        # Немає розбиття для негативних чисел
+        return []
+    ways = []
+    for i in range(start, n + 1):
+        if is_prime(i) and i <= n:
+            for sub in split_into_primes(n - i, i + 1):
+                ways.append([i] + sub)
+    return ways
+
+# Вводимо число
+number = int(input("Введіть ціле число до 20: "))
+if number > 20 or number < 1:
+    print("Будь ласка, введіть число від 1 до 20.")
+else:
+    result = split_into_primes(number)
+    print(f"Способи розбиття числа {number} на суму простих чисел різними способами:")
+    for way in result:
+        print(" + ".join(map(str, way)))
+        
